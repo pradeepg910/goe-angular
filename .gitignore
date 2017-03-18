@@ -1,0 +1,4 @@
+outlay-service/bin/
+outlay-service/.gradle/
+outlay-service/.settings/
+outlay-service/.classpath
