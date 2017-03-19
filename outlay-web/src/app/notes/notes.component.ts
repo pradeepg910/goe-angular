@@ -1,6 +1,7 @@
-import {Component} from '@angular/core'
-import {NotesService} from './notes.service'
+import {Component, OnInit} from '@angular/core'
 
+import {NotesService} from './notes.service'
+import {Note} from './note'
 @Component({
   selector: 'notes',
   template: `
@@ -8,20 +9,25 @@ import {NotesService} from './notes.service'
         {{title}}
         <ul>
           <li *ngFor="let note of notes">
-            {{note}}
+            Title: {{note.title}} Body: {{note.body}}
           </li>
         </ul>
-        `,
-    providers: [NotesService]
+        `
 })
-export class NotesComponent {
+export class NotesComponent implements OnInit{
 
-notes: string[];
+notes: Note[];
 
-constructor(notesService: NotesService) {
-  this.notes = notesService.retrieveNotes();
-}
+constructor(private notesService: NotesService) {}
 
   title = "This is title";
+
+  getHeroes(): void {
+    this.notesService.retrieveNotes().then(notes => this.notes = notes);
+  }
+
+  ngOnInit(): void {
+      this.getHeroes();
+  }
 
 }
