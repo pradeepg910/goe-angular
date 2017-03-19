@@ -1,12 +1,13 @@
-import {Component} from 'angular2/core'
+import {Component} from '@angular/core'
 import {NotesService} from './notes.service'
+
 @Component({
   selector: 'notes',
   template: `
         <h2>Notes</h2>
         {{title}}
         <ul>
-          <li *ngFor="#note of notes">
+          <li *ngFor="let note of notes">
             {{note}}
           </li>
         </ul>
@@ -15,7 +16,7 @@ import {NotesService} from './notes.service'
 })
 export class NotesComponent {
 
-notes;
+notes: string[];
 
 constructor(notesService: NotesService) {
   this.notes = notesService.retrieveNotes();
