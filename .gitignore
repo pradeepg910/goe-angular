@@ -2,3 +2,6 @@ outlay-service/bin/
 outlay-service/.gradle/
 outlay-service/.settings/
 outlay-service/.classpath
+outlay-web/node_modules/
+outlay-web/node_modules/
+
