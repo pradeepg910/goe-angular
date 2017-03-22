@@ -4,15 +4,8 @@ import {NotesService} from './notes.service'
 import {Note} from './note'
 @Component({
   selector: 'notes',
-  template: `
-        <h2>Notes</h2>
-        {{title}}
-        <ul>
-          <li *ngFor="let note of notes">
-            Title: {{note.title}} Body: {{note.body}}
-          </li>
-        </ul>
-        `
+  templateUrl: './app/notes/notes.component.html',
+  styleUrls: [ './app/notes/notes.component.css' ]
 })
 export class NotesComponent implements OnInit{
 
@@ -22,12 +15,12 @@ constructor(private notesService: NotesService) {}
 
   title = "This is title";
 
-  getHeroes(): void {
+  getNotes(): void {
     this.notesService.retrieveNotes().then(notes => this.notes = notes);
   }
 
   ngOnInit(): void {
-      this.getHeroes();
+      this.getNotes();
   }
 
 }

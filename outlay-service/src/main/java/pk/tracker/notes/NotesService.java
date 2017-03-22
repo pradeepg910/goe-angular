@@ -24,7 +24,7 @@ public class NotesService {
 		mapper = mappingManager.mapper(Note.class);
 	}
 
-	public Note save(Note note) {
+	public Note add(Note note) {
 		mapper.save(note);
 		return note;
 	}

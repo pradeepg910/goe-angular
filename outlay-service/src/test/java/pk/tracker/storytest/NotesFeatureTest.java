@@ -3,7 +3,10 @@ package pk.tracker.storytest;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+import java.time.LocalDateTime;
+
 import org.hamcrest.core.Is;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
@@ -16,6 +19,7 @@ public class NotesFeatureTest {
 
 	private String title;
 	private String body;
+	@Autowired
 	private NotesController controller;
 	private Note actualNote;
 
@@ -23,12 +27,11 @@ public class NotesFeatureTest {
 	public void note_has_title_and_body(String title, String body) throws Throwable {
 	    this.title = title;
 		this.body = body;
-		controller = new NotesController();
 	}
 
 	@When("^save the note$")
 	public void save_the_note() throws Throwable {
-	    actualNote = controller.saveNote(new Note(title, body));
+	    actualNote = controller.addNote(new Note(title, body, LocalDateTime.now()));
 	}
 
 	@Then("^it should save the note with title (.+) into database$")

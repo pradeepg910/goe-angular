@@ -1,6 +1,10 @@
 package pk.tracker.notes;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,9 +20,9 @@ public class NotesController {
 	@Autowired
 	NotesService service;
 	
-	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public Note saveNote(@RequestBody Note note) {
-		return service.save(note);
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public Note addNote(@RequestBody Note note) {
+		return service.add(note);
 	}
 	
 	@RequestMapping(value = "retrieveAll")
@@ -26,5 +30,8 @@ public class NotesController {
 		return service.retrieveAll();
 	}
 	
-	
+	@RequestMapping(value = "notes")
+	public Map<Integer, Map<String, List<Note>>> map() {
+		return new NotesMonthYearMapper().map(service.retrieveAll());
+	}
 }
