@@ -31,7 +31,7 @@ public class NotesController {
 	}
 	
 	@RequestMapping(value = "notes")
-	public Map<Integer, Map<String, List<Note>>> map() {
-		return new NotesMonthYearMapper().map(service.retrieveAll());
+	public List<Year> map() {
+		return new NotesYearMapper().groupBy(service.retrieveAll());
 	}
 }

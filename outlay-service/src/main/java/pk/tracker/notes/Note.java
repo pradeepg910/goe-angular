@@ -1,6 +1,7 @@
 package pk.tracker.notes;
 
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalAmount;
 
 import com.datastax.driver.mapping.annotations.Table;
 import com.datastax.driver.mapping.annotations.Transient;
@@ -11,14 +12,16 @@ public class Note {
 
 	public String title;
 	public String body;
-	public String timestamp = LocalDateTime.now().toString();
+	public double amount;
+	public String timestamp = (LocalDateTime.now()).toString();
 
 	public Note() {
 	}
 
-	public Note(String title, String body, LocalDateTime dateTime) {
+	public Note(String title, String body, double amount, LocalDateTime dateTime) {
 		this.title = title;
 		this.body = body;
+		this.amount = amount;
 		this.timestamp = dateTime.toString();
 	}
 

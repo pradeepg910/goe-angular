@@ -31,7 +31,7 @@ public class NotesFeatureTest {
 
 	@When("^save the note$")
 	public void save_the_note() throws Throwable {
-	    actualNote = controller.addNote(new Note(title, body, LocalDateTime.now()));
+	    actualNote = controller.addNote(new Note(title, body, 0, LocalDateTime.now()));
 	}
 
 	@Then("^it should save the note with title (.+) into database$")
